@@ -3,6 +3,7 @@ package org.acme.rest.json;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import javax.json.bind.annotation.JsonbCreator;
 
 
 public class Expense {
@@ -29,6 +30,11 @@ public class Expense {
 
     public Expense(String name, PaymentMethod paymentMethod, String amount) {
         this(UUID.randomUUID(), name, LocalDateTime.now(), paymentMethod, amount);
+    }
+
+    @JsonbCreator
+    public static Expense of(String name, PaymentMethod paymentMethod, String amount) {
+        return new Expense(name, paymentMethod, amount);
     }
 
     public UUID getUuid() {
