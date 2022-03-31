@@ -18,6 +18,13 @@ public class TodoResource {
     @Inject TodoRepo repo;
 
     @GET
+    @Path("/hello")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello() {
+        return "Hello RESTEasy";
+    }
+
+    @GET
     public List<Todo> getAll() {
         return repo.listAll(Sort.by("order"));
     }
